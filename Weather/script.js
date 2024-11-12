@@ -1,4 +1,4 @@
-const apiKey = 'a4372a07e9145fbb51dc550658c4ca36'; // Replace with your valid OpenWeatherMap API key
+const apiKey = 'a4372a07e9145fbb51dc550658c4ca36';
 let isCelsius = true;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,10 +18,8 @@ async function getWeatherByCity() {
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius ? 'metric' : 'imperial'}`;
 
     try {
-        // Fetch and display current weather
         await fetchWeatherData(weatherUrl);
 
-        // Fetch and display 5-day forecast
         await fetchForecastData(forecastUrl);
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -29,8 +27,6 @@ async function getWeatherByCity() {
     }
 }
 
-
-// Fetch current weather by geolocation
 async function getWeatherByLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
@@ -39,10 +35,8 @@ async function getWeatherByLocation() {
             const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius ? 'metric' : 'imperial'}`;
 
             try {
-                // Fetch and display current weather data
                 await fetchWeatherData(weatherUrl);
 
-                // Fetch and display forecast data
                 await fetchForecastData(forecastUrl);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -80,23 +74,21 @@ async function autocompleteCity() {
     const autocompleteList = document.getElementById('autocomplete-list');
     const query = input.value.trim();
     
-    // Очищаем предыдущие предложения
     autocompleteList.innerHTML = '';
     
-    if (query.length < 3) return; // Начинаем поиск только после ввода 3 символов
+    if (query.length < 3) return; 
 
     try {
         const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=5&appid=${apiKey}`);
         const cities = await response.json();
 
-        // Отображаем результаты автозаполнения
         cities.forEach(city => {
             const item = document.createElement('div');
             item.textContent = `${city.name}, ${city.country}`;
             item.addEventListener('click', () => {
-                input.value = city.name; // Вставляем выбранное название города в поле ввода
-                autocompleteList.innerHTML = ''; // Очищаем список автозаполнения
-                getWeatherByCity(); // Получаем погоду для выбранного города
+                input.value = city.name; 
+                autocompleteList.innerHTML = '';
+                getWeatherByCity();
             });
             autocompleteList.appendChild(item);
         });
@@ -124,8 +116,6 @@ async function fetchForecastData(url) {
     }
 }
 
-
-// Display current weather
 function displayCurrentWeather(data) {
     const weatherDiv = document.getElementById('current-weather');
     const { main, weather, wind } = data;
@@ -144,7 +134,6 @@ function displayCurrentWeather(data) {
 
 }
 
-// Display 5-day forecast
 function displayForecast(data) {
     const forecastDiv = document.getElementById('forecast');
     forecastDiv.innerHTML = '';
@@ -165,17 +154,13 @@ function displayForecast(data) {
 
 
 function toggleUnit() {
-    // Переключаем состояние между Цельсием и Фаренгейтом
     isCelsius = !isCelsius;
     
-    // Обновляем текст кнопки в зависимости от состояния
     const unitToggleButton = document.getElementById('unit-toggle-button');
     unitToggleButton.textContent = isCelsius ? '°F' : '°C';
     
-    // Проверяем, введен ли город в поисковую строку
     const city = document.getElementById('city-input').value.trim();
     
-    // Обновляем данные в зависимости от наличия введенного города
     if (city) {
         getWeatherByCity();
     } else {

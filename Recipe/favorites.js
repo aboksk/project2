@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesContainer.innerHTML = `<p class="noelement">No favorites added yet!</p>`   ;
     }
 
-    // Combined event listener for both removing and getting recipe
     favoritesContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-from-favorites')) {
             const recipeId = e.target.closest('.meal-item').getAttribute('data-recipe-id');
@@ -49,19 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
             favorites = favorites.filter(recipe => recipe.id !== recipeId);
             localStorage.setItem('favorites', JSON.stringify(favorites));
             e.target.closest('.meal-item').remove();
-            // alert('Recipe removed from favorites!');
         }
 
         if (e.target.classList.contains('recipe-btn')) {
             e.preventDefault();
-            const mealItem = e.target.closest('.meal-item');  // Use closest to find meal item
+            const mealItem = e.target.closest('.meal-item'); 
             fetch(`${baseUrl}/${mealItem.dataset.recipeId}/information?apiKey=${apiKey}`)
             .then(response => response.json())
             .then(data => mealRecipeModal(data));
         }
     });
 
-    // Create a modal for the recipe
     function mealRecipeModal(meal){
         let html = `
             <h2 class="recipe-title">${meal.title}</h2>

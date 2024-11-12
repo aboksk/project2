@@ -34,7 +34,6 @@ let lastUrl = API_URL;
 
 sortRatingBtn.addEventListener('click', () => sortMoviesByRating());
 
-// Показ окна жанров
 viewGenresBtn.addEventListener('click', (e) => {
   e.preventDefault();
   openGenreCatalog();
@@ -42,10 +41,10 @@ viewGenresBtn.addEventListener('click', (e) => {
 
 search.addEventListener('input', () => {
   const searchTerm = search.value.trim();
-  if (searchTerm.length > 2) {  // Начинать искать после ввода 3 символов
+  if (searchTerm.length > 2) {  
     fetchSuggestions(searchTerm);
   } else {
-    movieSuggestions.innerHTML = ''; // Очищаем автокомплит, если меньше 3 символов
+    movieSuggestions.innerHTML = '';
   }
 });
 function openGenreCatalog() {
@@ -74,7 +73,7 @@ function fetchSuggestions(query) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      movieSuggestions.innerHTML = '';  // Очищаем предыдущие предложения
+      movieSuggestions.innerHTML = '';  
       data.results.forEach(movie => {
         const option = document.createElement('option');
         option.value = movie.title;
@@ -91,7 +90,7 @@ function toggleGenreSelection(genreId, genreElement) {
     selectedGenre.push(genreId);
     genreElement.classList.add('highlight');
   }
-  currentPage = 1; // Обнуляем страницу
+  currentPage = 1; 
   fetchMovies();
 }
 
@@ -99,7 +98,6 @@ function closeGenreCatalog() {
   genreCatalog.style.display = 'none';
 }
 
-// Функция сортировки по рейтингу
 function sortMoviesByRating() {
   const movieElements = Array.from(document.querySelectorAll('.movie'));
   movieElements.sort((a, b) => {
@@ -112,7 +110,6 @@ function sortMoviesByRating() {
   movieElements.forEach(movieEl => main.appendChild(movieEl));
 }
 
-// Обработка формы поиска
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   selectedGenre = [];
@@ -129,7 +126,7 @@ form.addEventListener('submit', (e) => {
 function fetchMovies(url = API_URL) {
   let genresQuery = selectedGenre.length ? `&with_genres=${selectedGenre.join(',')}` : '';
   let urlWithPage = `${url}${genresQuery}&page=${currentPage}`;
-  lastUrl = url; // Обновляем lastUrl для пагинации
+  lastUrl = url;
 
   fetch(urlWithPage)
     .then(res => res.json())
@@ -165,7 +162,7 @@ function showMovies(data) {
     `;
     main.appendChild(movieEl);
   });
-  sortMoviesByRating(); // Вызов сортировки, если нужно отсортировать при каждой загрузке
+  sortMoviesByRating(); 
 }
 
 function getColor(vote) {
@@ -192,5 +189,4 @@ next.addEventListener('click', () => {
   }
 });
 
-// Initial Fetch
 fetchMovies();

@@ -1,18 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Background and Body */
 body {
   background-image: url(backgr.jpg);
-  background-size: cover; /* Scale the image to cover the entire container */
-  background-position: center; /* Center the image */
-  /* background-repeat: ; */
+  background-size: cover; 
+  background-position: center; 
   font-family: 'Poppins', sans-serif;
   color: #333;
   display: flex;
@@ -21,7 +18,6 @@ body {
   height: 100vh;
 }
 
-/* Header Styling */
 .app-header {
   width: 100%;
   display: flex;
@@ -33,7 +29,6 @@ body {
   border-radius: 0 0 12px 12px;
 }
 
-/* Search Bar in Header */
 .search-bar {
   display: flex;
   gap: 8px;
@@ -67,39 +62,35 @@ button:hover {
   background: linear-gradient(135deg, #CEAD6D, #9E9B98);
 }
 
-/* Toggle for Unit Selection */
 .unit-toggle {
   margin-top: 10px;
   font-size: 14px;
 }
 
-/* Main Weather App Area */
 .weather-app {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  max-width: 1500px; /* Adjust the width as needed */
+  max-width: 1500px; 
   max-height: 1500px;
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
 #current-weather {
-  flex: 1; /* Takes up 50% of the container width */
-  background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
+  flex: 1; 
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 8px;
   margin-right: 20px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 
 
-/* Forecast Scroll Area */
 
 .forecast {
-  flex: 1; /* Takes up the other 50% of the container width */
-  background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
+  flex: 1; 
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -118,11 +109,11 @@ button:hover {
 }
 
 .forecast-day:hover {
-  background-color: rgba(255, 255, 255, 0.4); /* Highlight when hovering over a day */
+  background-color: rgba(255, 255, 255, 0.4);
   transform: scale(1.05);
 }
 .forecast-day img {
-  width: 40px; /* Adjust icon size */
+  width: 40px;
   background-color: #BACBDB;
 }
 .autocomplete {
@@ -158,12 +149,12 @@ button:hover {
 }
 .current-weather-content {
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
   text-align: center;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Soft shadow for depth */
   width: 100%;
-  max-width: 350px; /* Limiting the width of the card */
-  margin: 0 auto; /* Centering the card */
+  max-width: 350px;
+  margin: 0 auto;
 }
 
 .city-name {
@@ -176,13 +167,13 @@ button:hover {
 .temperature {
   font-size: 3rem;
   font-weight: 700;
-  color: #BACBDB; /* A nice green color for temperature */
+  color: #BACBDB;
   margin: 10px 0;
 }
 
 .weather-description {
   font-size: 1.2rem;
-  color: #686461; /* Soft grey for description */
+  color: #686461; 
   margin-bottom: 20px;
 }
 
@@ -198,12 +189,11 @@ button:hover {
 }
 
 .weather-icon {
-  width: 80px; /* Adjust icon size */
+  width: 80px; 
   height: 80px;
   margin-top: 20px;
 }
 
-/* Optional: Add some animation or hover effect */
 .current-weather-content:hover {
   /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  */
   transform: scale(1.02); 
@@ -212,14 +202,14 @@ button:hover {
 
 @media (max-width: 768px) {
   .weather-app {
-    flex-direction: column; /* Stack the weather and forecast areas */
+    flex-direction: column; 
     align-items: center;
   }
 
   #current-weather {
     margin-right: 0;
     margin-bottom: 20px;
-    width: 100%; /* Add space below for mobile */
+    width: 100%;
   }
 
   .forecast {
@@ -227,7 +217,7 @@ button:hover {
   }
 
   .search-bar {
-    flex-direction: column; /* Stack search inputs vertically */
+    flex-direction: column;
   }
 
   button {
@@ -246,7 +236,7 @@ button:hover {
 
 @media (max-width: 480px) {
   .current-weather-content {
-    max-width: 90%; /* Adjust max width for mobile */
+    max-width: 90%;
   }
 
   .city-name {

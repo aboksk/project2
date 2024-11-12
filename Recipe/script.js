@@ -6,27 +6,25 @@
         const suggestionsContainer = document.getElementById('suggestions');
         const searchInput = document.getElementById('search-input');
 
-        // API Key and Base URL for Spoonacular
         const apiKey = 'b645f6825d7d412680d2514014ad4373';
         const baseUrl = 'https://api.spoonacular.com/recipes';
 
         searchInput.addEventListener('input', function () {
             const query = searchInput.value.trim();
         
-            if (query.length >= 2) { // Minimum characters to start autocomplete
+            if (query.length >= 2) { 
                 fetch(`${baseUrl}/autocomplete?query=${query}&number=5&apiKey=${apiKey}`)
                     .then(response => response.json())
                     .then(data => {
                         showSuggestions(data);
                     });
             } else {
-                suggestionsContainer.innerHTML = ""; // Clear suggestions if input is less than 2 chars
+                suggestionsContainer.innerHTML = ""; 
             }
         });
         
-        // Display suggestions
         function showSuggestions(data) {
-            suggestionsContainer.innerHTML = ""; // Clear previous suggestions
+            suggestionsContainer.innerHTML = ""; 
         
             if (data && data.length > 0) {
                 data.forEach(item => {
@@ -34,11 +32,10 @@
                     suggestionItem.classList.add('suggestion-item');
                     suggestionItem.textContent = item.title;
         
-                    // Set input field value on click
                     suggestionItem.addEventListener('click', () => {
                         searchInput.value = item.title;
-                        suggestionsContainer.innerHTML = ""; // Clear suggestions after selection
-                        getMealList(); // Trigger search for the selected suggestion
+                        suggestionsContainer.innerHTML = ""; 
+                        getMealList(); 
                     });
         
                     suggestionsContainer.appendChild(suggestionItem);
@@ -46,7 +43,6 @@
             }
         }
 
-        // Event listeners
         searchBtn.addEventListener('click', getMealList);
         mealList.addEventListener('click', getMealRecipe);
         recipeCloseBtn.addEventListener('click', () => {
@@ -55,7 +51,6 @@
         });
         
         
-        // Get meal list that matches with the ingredients
         function getMealList(){
             suggestionsContainer.innerHTML = "";
             let searchInputTxt = document.getElementById('search-input').value.trim();
@@ -91,7 +86,6 @@
                         const recipeId = recipeCard.getAttribute('data-id'); // Unique ID for each recipe
                         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
                 
-                        // Convert recipeId to a number (if needed) for correct comparison
                         const recipeExists = favorites.some(recipe => recipe.id == recipeId);
                         if (!recipeExists) {
                             const recipeData = {
@@ -102,7 +96,6 @@
                             favorites.push(recipeData);
                             console.log(favorites);
                             localStorage.setItem('favorites', JSON.stringify(favorites));
-                            // alert('Recipe added to favorites!');
                         } else {
                             alert('Recipe already in favorites!');
                         }
@@ -111,7 +104,6 @@
             });
         }
         
-        // Get recipe of the meal
         function getMealRecipe(e){
             e.preventDefault();
             if(e.target.classList.contains('recipe-btn')){

@@ -15,16 +15,15 @@
 
 body {
     background-image: url(backk.jpg);
-    background-size: cover; /* Scale the image to cover the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
     background-attachment: fixed; 
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-light);
     color: var(--text-dark);
 }
 
-/* Container */
 .container {
     width: 100%;
     display: flex;
@@ -35,14 +34,12 @@ body {
     padding: 1rem;
 }
 
-/* Meal Wrapper */
 .meal-wrapper {
     width: 100%;
     max-width: 1280px;
     text-align: center;
 }
 
-/* Search Area */
 .meal-search {
     margin-bottom: 2rem;
 }
@@ -152,7 +149,6 @@ body {
     background: var(--tenne-tawny-dark);
 }
 
-/* Adding more space for mobile */
 
 .favorites-btn{
     padding: 0.8rem 1.5rem;
@@ -173,7 +169,7 @@ body {
     padding: 1rem;
 }
 .add-to-favorites {
-    background-color: #EE9B01; /* Tomato color */
+    background-color: #EE9B01; 
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
@@ -184,17 +180,17 @@ body {
 }
 
 .add-to-favorites:hover {
-    background-color: #DA6A00; /* Darken on hover */
-    transform: scale(1.05); /* Slightly increase size */
+    background-color: #DA6A00; 
+    transform: scale(1.05); 
 }
 
 .add-to-favorites:active {
-    background-color: #cc4733; /* Darker shade on click */
-    transform: scale(0.98); /* Slightly shrink */
+    background-color: #cc4733;
+    transform: scale(0.98);
 }
 .meal-details-content{
-    max-height: 70vh; /* Ограничиваем высоту окна до 70% высоты экрана */
-    overflow-y: auto; /* Вертикальная прокрутка при необходимости */
+    max-height: 70vh; 
+    overflow-y: auto; 
     padding: 20px;
 }
 .meal-details-content::-webkit-scrollbar {
@@ -202,7 +198,6 @@ body {
 }
 
 
-/* Meal Details (Modal) */
 .meal-details {
     position: fixed;
     top: 50%;
@@ -274,7 +269,6 @@ body {
     color: var(--tenne-tawny);
 }
 
-/* Close Button */
 .recipe-close-btn {
     position: absolute;
     top: 1rem;
@@ -290,19 +284,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-/* Общие стили для карточек */
-    /* .meal-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 300px;
-        background-color: #f9f9f9;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px;
-        transition: transform 0.3s ease;
-    }
-    */
+
   .meal-item:hover {
     transform: scale(1.05);
   }
@@ -319,7 +301,6 @@ body {
     margin: 0;
   }
   
-  /* Стили для кнопки "Удалить из избранного" */
   .remove-from-favorites {
     background-color: #ff6347;
     color: white;
@@ -341,7 +322,6 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
   }
-  /* Стили для текста, если избранные рецепты отсутствуют */
   .favorites-container p {
     color: #888;
     text-align: center;
@@ -349,10 +329,10 @@ body {
   }
   .title-container {
     display: flex;
-    justify-content: space-between; /* Aligns items on opposite sides */
-    align-items: center; /* Vertically centers items */
+    justify-content: space-between; 
+    align-items: center;
     padding: 1rem 2rem;
-    background-color: #f7f7f7; /* Light background color */
+    background-color: #f7f7f7; 
     border-bottom: 2px solid #ddd;
 }
 
@@ -376,14 +356,13 @@ body {
 }
 
 .home:hover {
-    background-color: #d2691e; /* Darken button on hover */
+    background-color: #d2691e;
 }
 
 .home a {
     color: #fff;
     text-decoration: none;
 }
-/* Container for search input and suggestions */
 .search-container {
     position: relative;
     max-width: 400px; /* Set a maximum width */
@@ -416,35 +395,32 @@ body {
 .suggestion-item {
     padding: 0.5rem;
     cursor: pointer;
-    font-size: 1rem; /* Adjust font size as needed */
+    font-size: 1rem;
 }
 
 .suggestion-item:hover {
     background-color: #f0f0f0;
 }
 
-/* Responsive behavior */
-
 
  @media screen and (max-width: 900px) {
   #meal {
-    grid-template-columns: repeat(2, 1fr);  /* 2 cards per row on medium screens */
+    grid-template-columns: repeat(2, 1fr); 
    }
 }
 @media (max-width: 768px) {
     .title, .favorites-title, .recipe-title {
-        font-size: 1.8rem; /* Уменьшаем размер заголовков */
+        font-size: 1.8rem; 
     }
     .search-control, .search-btn, .favorites-btn, .recipe-btn, .remove-from-favorites, .home {
-        font-size: 0.9rem; /* Уменьшаем шрифт текста в кнопках */
-        padding: 0.5rem; /* Уменьшаем внутренние отступы */
+        font-size: 0.9rem; 
+        padding: 0.5rem;
     }
     #meal {
-        grid-template-columns: repeat(2, 1fr);  /* 2 cards per row on medium screens */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Responsive Adjustments */
  @media screen and (max-width: 600px) {
     .title {
         font-size: 1.8rem;
@@ -454,7 +430,7 @@ body {
         flex-direction: column;
     }
     .meal-result {
-      grid-template-columns: 1fr;  /* 1 card per row on small screens */
+      grid-template-columns: 1fr; 
     }
     .title-container {
         flex-direction: column;
@@ -465,16 +441,16 @@ body {
         margin-bottom: 1rem;
     }
     #meal {
-        grid-template-columns: repeat(1, 1fr);  /* 2 cards per row on medium screens */
+        grid-template-columns: repeat(1, 1fr);
     }
 } 
 @media (max-width: 500px) {
     .title, .favorites-title, .recipe-title {
-        font-size: 1.5rem; /* Еще больше уменьшаем размер заголовков */
+        font-size: 1.5rem; 
     }
     .search-control, .search-btn, .favorites-btn, .recipe-btn, .remove-from-favorites, .home {
-        font-size: 0.8rem; /* Еще больше уменьшаем шрифт текста в кнопках */
-        padding: 0.4rem; /* Уменьшаем внутренние отступы */
+        font-size: 0.8rem; 
+        padding: 0.4rem;
     }
 }
 
