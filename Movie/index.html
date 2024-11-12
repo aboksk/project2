@@ -1,0 +1,38 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <form  id="form">
+          <input type="text" placeholder="Search" id="search" class="search" list="movieSuggestions">
+          <datalist id="movieSuggestions"></datalist> 
+          <button type="button" id="viewGenresBtn">Genres</button>
+          <button id="sortRatingBtn">Sort by Rating</button>
+
+  <!-- Genre Catalog Overlay -->  
+          <div id="genreCatalog" class="genre-overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeGenreCatalog()">&times;</a>
+            <div class="genre-overlay-content" id="genreCatalogContent"></div>
+          </div>
+
+      </form>
+    </header>
+    <div id="tags"></div>
+    <main id="main"></main>
+    <div class="pagination">
+      <div class="page" id="prev">Previous Page</div>
+      <div class="current" id="current">1</div>
+      <div class="page" id="next">Next Page</div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+  </body>
+  </html>

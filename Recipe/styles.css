@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --tenne-tawny: #68904D;
+    --tenne-tawny-dark: #14471E;
+    --background-light: #f5f5f5;
+    --text-dark: #333;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(backk.jpg);
+    background-size: cover; /* Scale the image to cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; 
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Meal Wrapper */
+.meal-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    text-align: center;
+}
+
+/* Search Area */
+.meal-search {
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--tenne-tawny-dark);
+}
+
+.title_result{
+    display: none;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--tenne-tawny-dark);
+}
+.show{
+    display: block;
+}
+
+.meal-search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.search-control {
+    padding: 1rem;
+    width: 100%;
+    max-width: 500px;
+    font-size: 1.1rem;
+    border: 2px solid var(--tenne-tawny);
+    border-radius: 8px;
+    color: var(--tenne-tawny-dark);
+}
+
+.search-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    background-color: var(--tenne-tawny);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: var(--tenne-tawny-dark);
+}
+
+.meal-result{
+    margin-top: 4rem;
+}
+#meal{
+    margin: 2.4rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.meal-item{
+    background-color: #fff;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
+    margin: 2rem 0;
+}
+.meal-img img{
+    width: 100%;
+    display: block;
+}
+.meal-name{
+    padding: 1.5rem 0.5rem;
+}
+.meal-name h3{
+    font-size: 1.4rem;
+}
+.recipe-btn{
+    text-decoration: none;
+    color: #fff;
+    background: var(--tenne-tawny);
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+}
+.recipe-btn:hover{
+    background: var(--tenne-tawny-dark);
+}
+
+/* Adding more space for mobile */
+
+.favorites-btn{
+    padding: 0.8rem 1.5rem;
+    background-color: var(--tenne-tawny);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}  
+.favorites-btn:hover {
+    background-color: var(--tenne-tawny-dark);
+}
+.favorites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+.add-to-favorites {
+    background-color: #EE9B01; /* Tomato color */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-to-favorites:hover {
+    background-color: #DA6A00; /* Darken on hover */
+    transform: scale(1.05); /* Slightly increase size */
+}
+
+.add-to-favorites:active {
+    background-color: #cc4733; /* Darker shade on click */
+    transform: scale(0.98); /* Slightly shrink */
+}
+.meal-details-content{
+    max-height: 70vh; /* Ограничиваем высоту окна до 70% высоты экрана */
+    overflow-y: auto; /* Вертикальная прокрутка при необходимости */
+    padding: 20px;
+}
+.meal-details-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Meal Details (Modal) */
+.meal-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    display: none;
+    z-index: 10;
+}
+
+.showRecipe {
+    display: block;
+}
+
+.recipe-title {
+    font-size: 2rem;
+    color: var(--tenne-tawny-dark);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.recipe-category {
+    display: inline-block;
+    justify-content: center;
+    background: var(--tenne-tawny);
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.category-parent    {
+    display: flex;
+    justify-content: center;
+}
+.recipe-instruct {
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.recipe-meal-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 1rem auto;
+}
+
+.recipe-link{
+    display: flex;
+    justify-content: center;
+}
+.recipe-link a {
+    color: var(--tenne-tawny-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.recipe-link a:hover {
+    color: var(--tenne-tawny);
+}
+
+/* Close Button */
+.recipe-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--tenne-tawny);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Общие стили для карточек */
+    /* .meal-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        transition: transform 0.3s ease;
+    }
+    */
+  .meal-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .meal-name {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .meal-name h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  /* Стили для кнопки "Удалить из избранного" */
+  .remove-from-favorites {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-from-favorites:hover {
+    background-color: #ff3b1f;
+  }
+  #favorites-container{
+    margin: 2.4rem 2.4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  /* Стили для текста, если избранные рецепты отсутствуют */
+  .favorites-container p {
+    color: #888;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .title-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items on opposite sides */
+    align-items: center; /* Vertically centers items */
+    padding: 1rem 2rem;
+    background-color: #f7f7f7; /* Light background color */
+    border-bottom: 2px solid #ddd;
+}
+
+.favorites-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.home {
+    background-color: var(--tenne-tawny);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.home:hover {
+    background-color: #d2691e; /* Darken button on hover */
+}
+
+.home a {
+    color: #fff;
+    text-decoration: none;
+}
+/* Container for search input and suggestions */
+.search-container {
+    position: relative;
+    max-width: 400px; /* Set a maximum width */
+    width: 100%; /* Allows it to be responsive */
+    /* margin: 0 auto; Centers the container */
+}
+
+#suggestions {
+    position: absolute;
+    top: 100%; /* Position just below the input */
+    left: 0;
+    width: 100%; /* Match the width of the input field */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none; /* Remove the border between input and suggestions */
+    border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
+    max-height: 200px; /* Set a maximum height with scroll */
+    overflow-y: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    box-sizing: border-box;
+    z-index: 5;
+}
+.noelement{
+    font-family: 'Poppins', sans-serif;
+    font-size: large;
+    color: #cc4733;
+    font-weight: 600;
+    text-align: center;
+}
+.suggestion-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem; /* Adjust font size as needed */
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsive behavior */
+
+
+ @media screen and (max-width: 900px) {
+  #meal {
+    grid-template-columns: repeat(2, 1fr);  /* 2 cards per row on medium screens */
+   }
+}
+@media (max-width: 768px) {
+    .title, .favorites-title, .recipe-title {
+        font-size: 1.8rem; /* Уменьшаем размер заголовков */
+    }
+    .search-control, .search-btn, .favorites-btn, .recipe-btn, .remove-from-favorites, .home {
+        font-size: 0.9rem; /* Уменьшаем шрифт текста в кнопках */
+        padding: 0.5rem; /* Уменьшаем внутренние отступы */
+    }
+    #meal {
+        grid-template-columns: repeat(2, 1fr);  /* 2 cards per row on medium screens */
+    }
+}
+
+/* Responsive Adjustments */
+ @media screen and (max-width: 600px) {
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .meal-search-box {
+        flex-direction: column;
+    }
+    .meal-result {
+      grid-template-columns: 1fr;  /* 1 card per row on small screens */
+    }
+    .title-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .favorites-title {
+        margin-bottom: 1rem;
+    }
+    #meal {
+        grid-template-columns: repeat(1, 1fr);  /* 2 cards per row on medium screens */
+    }
+} 
+@media (max-width: 500px) {
+    .title, .favorites-title, .recipe-title {
+        font-size: 1.5rem; /* Еще больше уменьшаем размер заголовков */
+    }
+    .search-control, .search-btn, .favorites-btn, .recipe-btn, .remove-from-favorites, .home {
+        font-size: 0.8rem; /* Еще больше уменьшаем шрифт текста в кнопках */
+        padding: 0.4rem; /* Уменьшаем внутренние отступы */
+    }
+}
+
+
